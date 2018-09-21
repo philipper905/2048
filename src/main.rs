@@ -1,6 +1,6 @@
 extern crate termion;
 
-use std::{io::{self, Read, Write}, num};
+use std::{io::{self, Read, Write}, num, collections};
 
 use termion::{cursor, raw::IntoRawMode};
 
@@ -29,10 +29,36 @@ struct Grid {
 }
 
 impl Grid {
+    fn move_dir(&mut self, dir: Direction) {
+        match dir {
+            Direction::Up => {
+                let mut queue = collections::VecDeque::new();
+                for i in 0..self.inner[0].len() {
+                    let row = &self.inner[0];
+                    let current = row[i];
+                    if current == Cell::Empty {
+                        queue.push_back(i)
+                    } else {
 
+                    }
+                }
+            },
+            Direction::Down => ,
+            Direction::Left => ,
+            Direction::Right => ,
+        }
+    }
 }
 
+#[derive(Copy, Clone)]
 enum Cell {
     Empty,
     Number(u16)
+}
+
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
 }
